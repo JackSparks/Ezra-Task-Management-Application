@@ -1,0 +1,43 @@
+# Solution-level .gitignore for Ezra project
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore build output
+**/bin/
+**/obj/
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore database
+**/tasks.db
+
+# Ignore test coverage and reports
+**/coverage/
+**/TestResults/
+
+# Ignore environment files
+.env*
+
+# Ignore node_modules for frontend
+**/node_modules/
+
+# Ignore log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore Playwright and E2E artifacts
+**/playwright-report/
+**/.playwright/
+
+# Ignore local secrets
+secrets.json
