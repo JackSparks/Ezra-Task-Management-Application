@@ -2,7 +2,8 @@
 
 A modern, full-stack web app for managing your daily tasks—built with a .NET 8 backend and a React frontend.
 
-<img width="615" height="785" alt="Screenshot 2026-07-09 145224" src="https://github.com/user-attachments/assets/d74c7cac-fe55-4e80-b95e-1b87834c7ceb" />
+<img width="1919" height="1079" alt="Screenshot 2026-07-09 145224" src="https://github.com/user-attachments/assets/9e904edb-ff23-46fa-a700-9c9af52bc169" />
+
 
 
 ## What is this?
