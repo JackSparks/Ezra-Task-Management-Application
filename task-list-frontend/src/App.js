@@ -10,7 +10,6 @@ function App() {
   const [error, setError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
-  // Load tasks on component mount
   useEffect(() => {
     loadTasks();
   }, []);
@@ -20,10 +19,9 @@ function App() {
       setLoading(true);
       setError(null);
       const tasksData = await taskService.getAllTasks();
-      // Filter out any invalid tasks (missing title, etc.)
-      const validTasks = tasksData.filter(task => 
-        task && 
-        task.title && 
+      const validTasks = tasksData.filter(task =>
+        task &&
+        task.title &&
         task.title.trim().length > 0 &&
         typeof task.isCompleted === 'boolean'
       );
@@ -80,32 +78,57 @@ function App() {
 
   return (
     <div className="App">
+      <div className="app-background" aria-hidden="true">
+        <div className="app-background__gradient" />
+        <div className="app-background__grid" />
+      </div>
+
       <div className="app-container">
         <header className="app-header">
-          <h1>📝 Task Manager</h1>
-          <p>Keep track of your tasks and stay organized</p>
+          <div className="app-header__brand">
+            <div className="app-header__logo" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M3 5.5L8.5 11L17 3" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3 16.5H17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+              </svg>
+            </div>
+            <div className="app-header__text">
+              <h1>Task Manager</h1>
+              <p>Keep track of your tasks and stay organized</p>
+            </div>
+          </div>
         </header>
 
         {error && (
-          <div className="error-message">
-            <span className="error-icon">⚠️</span>
-            {error}
-            <button 
-              className="retry-btn" 
+          <div className="error-message" role="alert">
+            <span className="error-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/>
+                <path d="M8 5V8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <circle cx="8" cy="11" r="0.75" fill="currentColor"/>
+              </svg>
+            </span>
+            <span className="error-text">{error}</span>
+            <button
+              className="retry-btn"
               onClick={loadTasks}
               title="Retry loading tasks"
+              aria-label="Retry loading tasks"
             >
-              🔄
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M12.25 7A5.25 5.25 0 1 1 7 1.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M12.25 2.75V7H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </button>
           </div>
         )}
 
         <main className="app-main">
-          <TaskForm 
-            onSubmit={handleCreateTask} 
+          <TaskForm
+            onSubmit={handleCreateTask}
             loading={submitting}
           />
-          
+
           <TaskList
             tasks={tasks}
             onToggle={handleToggleTask}
